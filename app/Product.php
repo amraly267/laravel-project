@@ -12,6 +12,7 @@ class Product extends Model
         'purchasing_price', 'selling_price', 'stock_count'];
 
     protected $appends = ['imagePath', 'totalProfit'];
+    
 
     public function categories()
     {
