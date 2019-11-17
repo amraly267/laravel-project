@@ -1,0 +1,34 @@
+
+<script>
+    $(document).on('click', '#addCategory', function () {
+        var form = $('#categoryForm').serialize();
+        var submitUrl = $('#categoryForm').attr('action');
+        $.ajax({
+            url: submitUrl,
+            dataType: 'json',
+            data: form,
+            type: 'POST',
+            beforeSend: function(){
+                console.log('send data');
+            },
+            success: function(data){
+                console.log('success');
+                console.log(data);
+            },
+            error: function (data) {
+                console.log('error');
+
+                $.each(data.responseJSON.errors, function(key, value){
+                    console.log(value[0]);
+                    $('#validation-errors').append('<p>'+value[0]+'</p>');
+                });
+            }
+        })
+        return false;
+    });
+</script>
+
+
+<div class="alert alert-danger" id="validation-errors">
+</div>
+
